@@ -11,27 +11,32 @@ class AsistenteVirtual:
     def __init__(self):
         self.engine = pyttsx3.init()
         rate = self.engine.getProperty("rate")
-        self.engine.setProperty("rate",rate-68)
+        self.engine.setProperty("rate",rate-64)
         self.responses = {
-            "saludame mi nombre es":"Holaa, ",
+            "saludame mi nombre es": "Holaa, ",
             "que es el deporte": "El deporte es una actividad física que se realiza de manera competitiva o recreativa, siguiendo un conjunto de reglas.",
             "cual es el deporte mas famoso": "El deporte más famoso del mundo es el fútbol.",
-            "que es el futbol": "El fútbol es un deporte en el que dos equipos intentan marcar goles al introducir una pelota en la portería del equipo contrario.",
+            "que es futbol": "El fútbol es un deporte en el que dos equipos intentan marcar goles al introducir una pelota en la portería del equipo contrario.",
             "que es basketball": "El baloncesto es un deporte en el que dos equipos intentan anotar puntos lanzando una pelota a través de un aro elevado.",
             "porque es bueno hacer deporte": "Hacer deporte es bueno porque mejora la salud física, aumenta la energía, reduce el estrés y promueve la socialización.",
-            "que es el futbol americano": "El fútbol americano es un deporte de equipo en el que dos equipos intentan avanzar con un balón ovalado hacia la zona de anotación del oponente.",
+            "que es futbol americano": "El fútbol americano es un deporte de equipo en el que dos equipos intentan avanzar con un balón ovalado hacia la zona de anotación del oponente.",
             "es malo si no hago deporte": "No hacer deporte puede tener efectos negativos en la salud física y mental, como aumento de peso y estrés.",
             "como podria empezar": "Puedes empezar haciendo caminatas, uniéndote a una clase de ejercicio o practicando un deporte que te guste.",
             "cuales son los beneficios del deporte": "Los beneficios del deporte incluyen una mejor salud cardiovascular, aumento de la fuerza muscular y mejor salud mental.",
             "que son los juegos olimpicos": "Los Juegos Olímpicos son un evento deportivo internacional que reúne a atletas de todo el mundo en diversas disciplinas.",
             "que es el entrenamiento de resistencia": "El entrenamiento de resistencia es una forma de ejercicio que utiliza la resistencia para mejorar la fuerza y la resistencia muscular.",
-            "cual es la importancia del trabajo en equipo en el deporte": "El trabajo en equipo es crucial en muchos deportes, ya que fomenta la cooperación, la comunicación y la estrategia entre los jugadores."
-
+            "cual es la importancia del trabajo en equipo en el deporte": "El trabajo en equipo es crucial en muchos deportes, ya que fomenta la cooperación, la comunicación y la estrategia entre los jugadores.",
+            "que es el yoga": "El yoga es una práctica que combina posturas físicas, respiración controlada y meditación para mejorar la salud física y mental.",
+            "que es el tenis": "El tenis es un deporte en el que dos jugadores o dos equipos intentan golpear una pelota con una raqueta para que pase por encima de la red y aterrice en el campo del oponente.",
+            "que es el atletismo": "El atletismo es un conjunto de deportes que incluyen carreras, saltos y lanzamientos, y se centra en las habilidades físicas fundamentales.",
+            "que es la natacion": "La natación es un deporte en el que los atletas se desplazan en el agua usando técnicas como el estilo libre, mariposa, espalda y braza.",
+            "que es el box": "El boxeo es un deporte de combate en el que dos participantes se enfrentan utilizando únicamente sus puños, con guantes, para golpear al oponente mientras intentan esquivar los golpes del contrario. El objetivo es ganar por puntos o por nocaut."
         }
+
 
     def talk(self,text):
 
-        self.engine.say(text)
+        self.engine.say(",  "+text)
         self.engine.runAndWait()
 
     def matches(self,text):
@@ -80,9 +85,10 @@ class Gui:
             temp =" ".join(text.split()[4:])
             response += temp
 
+        self.put_text(response, text)
         self.window.update_idletasks()
         self.asistentevirtual.talk(response)
-        self.put_text(response, text)
+
 
         self.data.delete("1.0", END)
 
